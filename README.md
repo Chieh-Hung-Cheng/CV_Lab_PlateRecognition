@@ -565,6 +565,8 @@ for epoch in range(30):
 ```
 
 ## RESULT
+
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_graph.jpg "loss_graph")
 ```
 log/2019.06.30-10:29:09
 Epoch 0
