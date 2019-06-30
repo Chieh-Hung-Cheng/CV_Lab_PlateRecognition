@@ -565,4 +565,4 @@ for epoch in range(30):
 ```
 
 ## RESULT
-
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_graph.jpg "Logo loss_graph")
