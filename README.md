@@ -692,3 +692,6 @@ Epoch 29
   ```
 ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/plate_1.jpg "Logo plate_1")
 ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/plate_2.jpg "Logo plate_2")
+
+## colab version
+  https://colab.research.google.com/drive/17vCawLHzAhG_isiDweFo44uzkwJV1Pdv#scrollTo=Id4_SmMo9EuZ
