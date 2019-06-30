@@ -2,7 +2,7 @@
 ## Path.py
 ----------------
 - 使用自己的方式取出圖片的 ground truth <br>
-  逐一拆解 "_" "&" "-" (利用join spilt處理字串)
+  逐一拆解 "_" "&" "-" (利用join() spilt()處理字串)
 - 此為之後讀資料的先行嘗試 <br>
 - 註解者為範例code與notes
 ```python
