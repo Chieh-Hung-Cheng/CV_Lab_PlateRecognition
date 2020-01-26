@@ -203,7 +203,7 @@ tensor([4.0224], requires_grad=True)
 ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_model2.png "loss_model2")
 
 ## Colab link
-
+https://colab.research.google.com/drive/1K_uQCahGZVw10YwBH-182OslLaxC4oic#scrollTo=qwVCZ2ZCCwRb
 
 
 # CV-lab-problem-B (Car plate recongization problem)
