@@ -703,6 +703,7 @@ Epoch 29
       - train set length 4000 -> 8000
       - adjust dataset and train codes to fit
   - Results
+  ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_graph_0126.jpg "loss_graph_0126")
   ```
   log/2020.01.26-05:27:33
 Epoch 0
@@ -826,4 +827,11 @@ Epoch 29
   Valid: 100%|██████████| 1000/1000 [00:11<00:00, 87.43it/s, avg_mae=0.01620, avg_mse=0.00058]
   Visul: 100%|██████████| 64/64 [00:01<00:00, 45.00it/s]
   ```
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/plate_1_0126.jpg "Logo plate_1_0126")
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/plate_2_0126.jpg "Logo plate_2_0126")
+
+- Unfortunately, the results of the augmented dataset doesn't clearly imporve the performance
+  - Pehaps because the loss is already too low(?
+  - Or perhaps the model has already overfed with the overall dataset(?
+  - Perhaps try adjust brightness for augmentation in future testing
   
