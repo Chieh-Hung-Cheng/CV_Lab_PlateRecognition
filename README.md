@@ -181,8 +181,28 @@ plt.plot(plot2['idx'], plot2['loss'])
 plt.show()
 ```
 ## Results
+- Dataset 1 (y=ax+b)
+  - a = 4.9948(5), b=4.1474(4)
+```
+Parameter containing:
+tensor([4.9948], requires_grad=True)
+Parameter containing:
+tensor([4.1474], requires_grad=True)
+```
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_model1.png "loss_model1")
+- Dataset 2 (y=ax^x+bx+c)
+  - a = -1.8965(-2), b=1.2241(1.2), c=4.0224(4)
+```
+Parameter containing:
+tensor([-1.8965], requires_grad=True)
+Parameter containing:
+tensor([1.2241], requires_grad=True)
+Parameter containing:
+tensor([4.0224], requires_grad=True)
+```
+![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_model2.png "loss_model2")
 
-
+## Colab link
 
 
 
