@@ -1,4 +1,192 @@
-# CV-lab-project-B
+# CV-lab-problem-A (Line fitting problem)(2020/01/26)
+## Fetch data (unchanged)
+```
+!wget -nc 140.114.85.52:8000/pA1.csv
+!wget -nc 140.114.85.52:8000/pA2.csv
+```
+## Preparations (unchanged)
+```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D #for 3D visualization
+
+import torch
+from torch import nn
+from torch.nn import functional as F
+from torch.utils.data import Dataset, DataLoader
+
+seed = 999
+torch.manual_seed(seed)
+torch.backends.cudnn.deterministic = True
+```
+## Dataset and Training
+- Briefings
+  - Add dataloader for the second dataset
+  - Add second model for the second dataset
+  - Plot for the 3D visualization of model 1 performance (x_axis=a, y_axis=b, z_axis=loss)
+  - Plot for the 2D visualization of model 2 performance (x_axis=epoch_index, y_axis=loss)
+  - Adjust learning rate and epoch numbers
+```
+class Data:
+    def __init__(self, csv_path):
+        super().__init__()
+        self.anns = pd.read_csv(csv_path).to_dict('records')
+
+    def __len__(self):
+        return len(self.anns)
+
+    def __getitem__(self, idx):
+        ann = self.anns[idx]
+        x = torch.tensor(ann['x'])
+        y = torch.tensor(ann['y'])
+        return x, y
+
+
+class Net1(nn.Module): # model 1 with forward y=ax+b
+    def __init__(self):
+        super().__init__()
+        self.a = nn.Parameter(torch.rand(1) * 0.001)
+        self.b = nn.Parameter(torch.rand(1) * 0.001)
+    
+    def forward(self, xs):
+        ps = self.a * xs + self.b
+        return ps
+
+class Net2(nn.Module):  # model 2 with forward nn.linear() y=ax^2+bx+c
+    def __init__(self):
+        super().__init__()
+        self.a = nn.Parameter(torch.rand(1) * 0.001)
+        self.b = nn.Parameter(torch.rand(1) * 0.001)
+        self.c = nn.Parameter(torch.rand(1) * 0.001)
+    
+    def forward(self, xs):
+        ps = self.a * xs * xs + self.b *xs + self.c
+        return ps        
+
+
+loader1 = DataLoader(Data('./pA1.csv'), batch_size=1, shuffle=True)
+loader2 = DataLoader(Data('./pA2.csv'), batch_size=1, shuffle=True) #datalader for model 2
+
+device = 'cpu'
+model1 = Net1().to(device)
+
+
+criterion = nn.L1Loss()
+optimizer = torch.optim.Adam(model1.parameters(), lr=1e-1)
+
+
+history1 = {
+    'loss': [],
+    'a': [],
+    'b': []
+}
+
+history2 = {
+    'loss': [],
+    'a': [],
+    'b': [],
+    'c': [],
+    'idx':[]
+}
+
+# Record a, b, loss for 3D visualization of model 1
+plot1 = {
+    'loss': [],
+    'a':[],
+    'b':[]
+}
+
+# Record loss and epoch index for visualization of model2
+plot2 = {
+    'loss': [],
+    'idx':[]
+}
+
+for epoch in range(20):
+    totalloss = 0
+    for xs, ys in iter(loader1):
+        xs = xs.to(device)
+        ys = ys.to(device)
+
+        optimizer.zero_grad()
+        ps = model1(xs)
+        loss1 = criterion(ps, ys)
+        loss1.backward()
+        optimizer.step()
+
+        totalloss = totalloss + loss1.detach().item()
+
+        history1['loss'].append(loss1.detach().item())
+        history1['a'].append(model1.a.item())
+        history1['b'].append(model1.b.item())
+    plot1['loss'].append(totalloss/len(loader1))
+    plot1['a'].append(model1.a.item())
+    plot1['b'].append(model1.b.item())
+
+
+print(model1.a)
+print(model1.b)
+
+# Plot of model 1 performance
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+ax.plot(plot1['a'], plot1['b'], plot1['loss'], label='loss curve to parameters')
+ax.legend()
+ax.set_xlabel('a')
+ax.set_ylabel('b') 
+ax.set_zlabel('L')
+
+plt.show()
+
+model2 = Net2().to(device)
+optimizer = torch.optim.Adam(model2.parameters(), lr=1e-1)
+for epoch in range(20):
+    totalloss = 0
+    for xs2, ys2 in iter(loader2):
+        xs2 = xs2.to(device)
+        ys2 = ys2.to(device)
+
+        optimizer.zero_grad()
+        ps2 = model2(xs2)
+        loss2 = criterion(ps2, ys2)
+        loss2.backward()
+        optimizer.step()
+
+        totalloss = totalloss + loss2.detach().item()
+
+        history2['loss'].append(loss2.detach().item())
+        history2['a'].append(model2.a.item())
+        history2['b'].append(model2.b.item())
+        history2['c'].append(model2.c.item())
+    plot2['idx'].append(epoch)
+    plot2['loss'].append(totalloss/len(loader2))
+
+    
+
+print(model2.a)
+print(model2.b)
+print(model2.c)
+
+print(plot2['idx'])
+print(plot2['loss'])
+
+# Plot of model 2 performance
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.plot(plot2['idx'], plot2['loss'])
+plt.show()
+```
+## Results
+
+
+
+
+
+# CV-lab-problem-B (Car plate recongization problem)
 ## Path.py
 ----------------
 - 使用自己的方式取出圖片的 ground truth <br>
