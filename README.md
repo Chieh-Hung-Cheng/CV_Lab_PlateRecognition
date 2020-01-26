@@ -203,7 +203,8 @@ tensor([4.0224], requires_grad=True)
 ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/loss_model2.png "loss_model2")
 
 ## Colab link
-https://colab.research.google.com/drive/1K_uQCahGZVw10YwBH-182OslLaxC4oic#scrollTo=qwVCZ2ZCCwRb
+https://colab.research.google.com/drive/1K_uQCahGZVw10YwBH-182OslLaxC4oic#scrollTo=qwVCZ2ZCCwRb <br>
+colab version outputed in github as well
 
 
 # CV-lab-problem-B (Car plate recongization problem)
@@ -902,7 +903,8 @@ Epoch 29
 ![alt text](https://github.com/Chieh-hung/CV-lab-project-1/blob/master/plate_2.jpg "Logo plate_2")
 
 ## colab version
-  https://colab.research.google.com/drive/17vCawLHzAhG_isiDweFo44uzkwJV1Pdv#scrollTo=Id4_SmMo9EuZ
+  https://colab.research.google.com/drive/17vCawLHzAhG_isiDweFo44uzkwJV1Pdv#scrollTo=Id4_SmMo9EuZ <br>
+  colab version outputed in github as well
 ## Update 2020/01/26
   - In colab version <br>
     - add data augmentation <br> 
